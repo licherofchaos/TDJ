@@ -65,19 +65,28 @@ namespace TDJ
             
             sensor.OnCollision = (a, b, contact) =>
             {
-                Sprite temporaria;
-                temporaria = (Sprite)b.Body.UserData;
-                
-                if (_status == Status.Flying && temporaria.Name != "bullet")
+                _collisions.Add(b);  
+                if (_status == Status.Flying && b.GameObject().Name != "bullet")
                 {
                     _status = Status.Patroling;
                     _startingPoint = _position;
                 }
-                if (temporaria.Name == "bullet")
+                if (b.GameObject().Name == "bullet")
                 {
                     Hp=-dmg;
                 }
-                
+                if (b.GameObject().Name == "player")
+                {
+                    game.Player.hp--;
+                    if (game.Player.hp > 0)
+                        {
+                    
+                        }
+                    else
+                    {
+                        game.Player.Die();   
+                    }
+                }
             };
             sensor.OnSeparation = (a, b, contact) =>
             {

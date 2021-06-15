@@ -114,27 +114,15 @@ namespace TDJ
 
         public override void Update(GameTime gameTime)
         {
-            Sprite temp;
+            
 
             Body.OnCollision = (a, b, c) =>
             {
 
-                temp = (Sprite)b.Body.UserData;
-                if (b.Body.UserData != null)
+              
+                
                 {   //Morte do player e reset a posição inicial
-                    if (temp.Name == "npc")
-                    {
-                        if (hp > 0)
-                        {
-
-                            hp--;
-                        }
-                        else
-                        {
-                            Die();
-                        }
-                    }
-                    if(temp.Name == "bullet") 
+                    if (b.GameObject().Name == "npc" || b.GameObject().Name == "npc2")
                     {
                         if (hp > 0)
                         {
