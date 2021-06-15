@@ -29,6 +29,9 @@ namespace TDJ
 
         private List<Texture2D> _idleFrames;
         private List<Texture2D> _walkFrames;
+        private Vector2 Posicao;
+
+
 
         public Player(Game1 game) :
             base("player",
@@ -40,7 +43,7 @@ namespace TDJ
                 .ToArray())
         {
             _idleFrames = _textures; // loaded by the base construtor
-
+            Posicao = new Vector2 (0f,4f);
             _walkFrames = Enumerable.Range(1, 4)
                 .Select(
                     n => game.Content.Load<Texture2D>($"walk/walk_{n}")
@@ -153,13 +156,12 @@ namespace TDJ
 
         public int Die()
         {
-            if(hp == 0)
+            if (hp == 0)
             {
-                return 1;
+               Body.Position = Posicao;
             }
             return 0;
         }
     }
-
 }
 

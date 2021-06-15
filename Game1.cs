@@ -67,7 +67,7 @@ namespace TDJ
             _world.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
             _player.Update(gameTime);
             _scene.Update(gameTime);
-            _player.Die();
+            
             Camera.LookAt(_player.Position);
 
             base.Update(gameTime);

@@ -15,6 +15,7 @@ namespace IPCA.MonoGame
     {
         private List<Sprite> _sprites;
         private List<NPC> _npcs;
+        private List<NPC2> _npcs2;
         private List<Coin> _coins;
 
         public Scene(Game1 game, string name)
@@ -41,12 +42,16 @@ namespace IPCA.MonoGame
                     sprite.AddRectangleBody(game.Services.GetService<World>(), 
                         isKinematic: true);
                 }
+ 
             }
-
+            
             //construcao de NPCS
             _npcs = new List<NPC>();
             _npcs.Add(new NPC(game, new Vector2(4.5f, 2f)));
             _npcs.Add(new NPC(game, new Vector2(7.5f, 4f)));
+
+            _npcs2 = new List<NPC2>();
+            _npcs2.Add(new NPC2(game, new Vector2(2.5f, 2f)));
 
             _coins = new List<Coin>();
             _coins.Add(new Coin(game, new Vector2(2.5f, 2f)));
@@ -63,12 +68,19 @@ namespace IPCA.MonoGame
                 if (_npcs[i].IsDead == true) _npcs.Remove(_npcs[i]);
             }
 
+            for (int i = 0; i < _npcs2.Count; i++)
+            {
+                _npcs2[i].Update(gameTime);
+                if (_npcs2[i].IsDead == true) _npcs2.Remove(_npcs2[i]);
+            }
 
             for (int i = 0; i < _coins.Count; i++)
             {
                 _coins[i].Update(gameTime);
                 if (_coins[i].IsDead == true) _coins.Remove(_coins[i]);
             }
+
+
 
         }
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
@@ -78,6 +90,8 @@ namespace IPCA.MonoGame
                 sprite.Draw(spriteBatch, gameTime);
             }
             foreach (NPC npc in _npcs) npc.Draw(spriteBatch, gameTime);
+
+            foreach (NPC2 npc2 in _npcs2) npc2.Draw(spriteBatch, gameTime);
 
             foreach (Coin coin in _coins) coin.Draw(spriteBatch, gameTime);
         }

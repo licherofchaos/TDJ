@@ -34,21 +34,21 @@ repeat: none
   index: -1
 13
   rotate: false
-  xy: 1823, 139
+  xy: 133, 9
   size: 128, 93
   orig: 128, 93
   offset: 0, 0
   index: -1
 14
   rotate: false
-  xy: 1823, 44
+  xy: 263, 9
   size: 128, 93
   orig: 128, 93
   offset: 0, 0
   index: -1
 15
   rotate: false
-  xy: 133, 9
+  xy: 393, 9
   size: 128, 93
   orig: 128, 93
   offset: 0, 0
@@ -126,6 +126,13 @@ repeat: none
 9
   rotate: false
   xy: 1693, 104
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+snek1
+  rotate: false
+  xy: 1823, 104
   size: 128, 128
   orig: 128, 128
   offset: 0, 0

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Genbox.VelcroPhysics.Collision.RayCast;
@@ -10,34 +10,34 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace TDJ
 {
-    public class NPC : AnimatedSprite
+    class NPC2 : AnimatedSprite
     {
         enum Status
         {
-            Flying, Patroling, Chasing 
+            Flying, Patroling, Chasing
         }
         private Status _status = Status.Flying;
-        
+
         private Game1 _game;
-     
+
         private List<Texture2D> _idleFrames;
         private List<Texture2D> _walkFrames;
         private Vector2 _startingPoint;
-        
-        private int Hp = 5;
+
+        private int Hp = 10;
         private bool isDead;
         public bool IsDead => isDead;
         private int _ccount = 0;
         private int dmg = 1;
         private HashSet<Fixture> _collisions;
-        
-        public NPC(Game1 game, Vector2 position) : 
-            base ("npc", 
-                position, 
-                Enumerable.Range(1,12)
+
+        public NPC2(Game1 game, Vector2 position) :
+            base("npc2",
+                position,
+                Enumerable.Range(1, 7)
                     .Select(
                         n => game.Content.Load<Texture2D>(
-                            $"NPC/snek{n}")
+                            $"NPC/sprite_{n}")
                         )
                     .ToArray())
 
@@ -45,13 +45,13 @@ namespace TDJ
             _collisions = new HashSet<Fixture>();
             _idleFrames = _textures;
             _direction = Direction.Left;
-                       
+
             _game = game;
-  
+
             AddRectangleBody(
                 _game.Services.GetService<World>(),
                 width: _size.X / 2f
-            ); 
+            );
 
 
 
@@ -62,10 +62,10 @@ namespace TDJ
             sensor.IsSensor = true;
 
             Body.Friction = 0f;
-            
+
             sensor.OnCollision = (a, b, contact) =>
             {
-                _collisions.Add(b);  
+                _collisions.Add(b);
                 if (_status == Status.Flying && b.GameObject().Name != "bullet")
                 {
                     _status = Status.Patroling;
@@ -73,41 +73,33 @@ namespace TDJ
                 }
                 if (b.GameObject().Name == "bullet")
                 {
-                    Hp=-dmg;
-                }
-                if (b.GameObject().Name == "player")
-                {
-                    game.Player.hp--;
-                    if (game.Player.hp > 0)
-                        {
-                    
-                        }
-                    else
-                    {
-                        game.Player.Die();   
-                    }
+                    Hp = -dmg;
                 }
             };
             sensor.OnSeparation = (a, b, contact) =>
             {
                 _collisions.Remove(b);
-            }; 
+            };
         }
 
 
 
         public override void Update(GameTime gameTime)
         {
-            
+
             switch (_game.coins)
             {
-                case 5:dmg = 2;
+                case 5:
+                    dmg = 2;
                     break;
-                case 10:dmg = 3;
+                case 10:
+                    dmg = 3;
                     break;
-                case 15:dmg = 4;
+                case 15:
+                    dmg = 4;
                     break;
-                case 20:dmg = 5;
+                case 20:
+                    dmg = 5;
                     break;
             }
             if (Hp <= 0)
@@ -136,12 +128,12 @@ namespace TDJ
                 }
                 else
                 {
-                    _direction = _position.X > _game.Player.Position.X 
+                    _direction = _position.X > _game.Player.Position.X
                         ? Direction.Left : Direction.Right;
                     Body.LinearVelocity = new
                         Vector2(_game.Player.Position.X - _position.X, 0);
                     Body.LinearVelocity.Normalize();
-                    
+
                 }
             }
             // Patrolling
@@ -157,7 +149,7 @@ namespace TDJ
                     if (_position.X < _startingPoint.X - _patrolDistance)
                         _direction = Direction.Right;
                     else
-                        Body.LinearVelocity = - Vector2.UnitX;  //<<
+                        Body.LinearVelocity = -Vector2.UnitX;  //<<
                 }
                 else  // Going to starting Point
                 {
