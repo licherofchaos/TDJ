@@ -43,7 +43,7 @@ namespace IPCA.MonoGame
                 }
             }
 
-            //construcao de NCPS
+            //construcao de NPCS
             _npcs = new List<NPC>();
             _npcs.Add(new NPC(game, new Vector2(4.5f, 2f)));
             _npcs.Add(new NPC(game, new Vector2(7.5f, 4f)));

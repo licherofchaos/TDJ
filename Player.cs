@@ -31,7 +31,7 @@ namespace TDJ
         private List<Texture2D> _walkFrames;
 
         public Player(Game1 game) :
-            base("idle",
+            base("player",
             new Vector2(0f, 4f),
             Enumerable.Range(1, 28)
                 .Select(

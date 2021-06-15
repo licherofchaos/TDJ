@@ -53,7 +53,7 @@ namespace TDJ
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             _scene = new Scene(this, "MainScene");
             _background = Content.Load<Texture2D>("background1");
-
+            Immortal = Content.Load<SpriteFont>("File");
             // TODO: use this.Content to load your game content here
         }
 
@@ -80,14 +80,16 @@ namespace TDJ
 
             _spriteBatch.Begin();
 
-            //string coines = $"Coins: {coins}";
-            //_spriteBatch.DrawString(
-            //     Immortal,
-            //     coines,
-            //     new Vector2(0, 3),
-            //     Color.OrangeRed);
+            
 
             _spriteBatch.Draw(_background, new Vector2(5, 5), Color.White);
+
+            string coines = $"Coins: {coins}";
+            _spriteBatch.DrawString(
+                 Immortal,
+                 coines,
+                 new Vector2(-5f, 50f),
+                 Color.OrangeRed);
             _scene.Draw(_spriteBatch, gameTime);
             _player.Draw(_spriteBatch, gameTime);
            

@@ -41,16 +41,15 @@ namespace TDJ
             AddRectangleBody(
                 _game.Services.GetService<World>(),
                 width: _size.X / 4f);
-            Fixture sensor = FixtureFactory.AttachRectangle(
-                _size.X / 3f, _size.Y * 0.05f,
-                4, new Vector2(0, -_size.Y / 2f),
-                Body);
-            sensor.IsSensor = true;
-
-            sensor.OnCollision = (a, b, contact) =>
+          
+           
+            Body.IsSensor = true;
+            
+            Body.BodyType = BodyType.Static;
+            Body.OnCollision = (a, b, contact) =>
             {
                 _collisions.Add(b);  
-                if (b.GameObject().Name == "Player")
+                if (b.GameObject().Name == "player")
                 {
                     game.coins++;
                     isDead = true;
