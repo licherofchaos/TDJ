@@ -6,15 +6,20 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using TDJ;
+
 
 namespace IPCA.MonoGame
 {
     public class Scene
     {
         private List<Sprite> _sprites;
+        private List<NPC> _npcs;
+        private List<Coin> _coins;
 
-        public Scene(Game game, string name)
+        public Scene(Game1 game, string name)
         {
+            //le ficheiro do level
             string filename = $"Content/scenes/{name}.dt";
             _sprites = new List<Sprite>();
             using (StreamReader reader = File.OpenText(filename))
@@ -37,14 +42,46 @@ namespace IPCA.MonoGame
                         isKinematic: true);
                 }
             }
+
+            //construcao de NCPS
+            _npcs = new List<NPC>();
+            _npcs.Add(new NPC(game, new Vector2(4.5f, 2f)));
+            _npcs.Add(new NPC(game, new Vector2(7.5f, 4f)));
+
+            _coins = new List<Coin>();
+            _coins.Add(new Coin(game, new Vector2(2.5f, 2f)));
+            _coins.Add(new Coin(game, new Vector2(3.5f, 2f)));
+
         }
 
+
+        public void Update(GameTime gameTime)
+        {
+            for (int i = 0; i < _npcs.Count; i++)
+            {
+                _npcs[i].Update(gameTime);
+                if (_npcs[i].IsDead == true) _npcs.Remove(_npcs[i]);
+            }
+
+
+            for (int i = 0; i < _coins.Count; i++)
+            {
+                _coins[i].Update(gameTime);
+                if (_coins[i].IsDead == true) _coins.Remove(_coins[i]);
+            }
+
+        }
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             foreach (Sprite sprite in _sprites)
             {
                 sprite.Draw(spriteBatch, gameTime);
             }
+            foreach (NPC npc in _npcs) npc.Draw(spriteBatch, gameTime);
+
+            foreach (Coin coin in _coins) coin.Draw(spriteBatch, gameTime);
         }
+
+       
     }
 }

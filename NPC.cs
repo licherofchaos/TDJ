@@ -25,14 +25,15 @@ namespace TDJ
         private Vector2 _startingPoint;
         
         private int Hp = 5;
-
+        private bool isDead;
+        public bool IsDead => isDead;
         private int _ccount = 0;
         private int dmg = 1;
         private HashSet<Fixture> _collisions;
         
-        public NPC(Game1 game) : 
+        public NPC(Game1 game, Vector2 position) : 
             base ("npc", 
-                new Vector2(5.5f,4f), 
+                position, 
                 Enumerable.Range(1,12)
                     .Select(
                         n => game.Content.Load<Texture2D>(
@@ -42,21 +43,15 @@ namespace TDJ
 
         {
             _collisions = new HashSet<Fixture>();
-            _idleFrames = _textures; // loaded by the base construtor
+            _idleFrames = _textures;
             _direction = Direction.Left;
-            
-            // _walkFrames = Enumerable.Range(1, 10)
-            //     .Select(
-            //         n => game.Content.Load<Texture2D>($"Walk_{n}")
-            //     )
-            //     .ToList();
-            
+                       
             _game = game;
   
             AddRectangleBody(
                 _game.Services.GetService<World>(),
                 width: _size.X / 2f
-            ); // kinematic is false by default
+            ); 
 
 
 
@@ -70,13 +65,13 @@ namespace TDJ
             
             sensor.OnCollision = (a, b, contact) =>
             {
-                _collisions.Add(b);  // FIXME FOR BULLETS
+                _collisions.Add(b);  
                 if (_status == Status.Flying && b.GameObject().Name != "bullet")
                 {
                     _status = Status.Patroling;
                     _startingPoint = _position;
                 }
-                else if (_status == Status.Flying && b.GameObject().Name == "bullet")
+                if (b.GameObject().Name == "bullet")
                 {
                     Hp=-dmg;
                 }
@@ -91,6 +86,7 @@ namespace TDJ
 
         public override void Update(GameTime gameTime)
         {
+            
             switch (_game.coins)
             {
                 case 5:dmg = 2;
@@ -104,6 +100,8 @@ namespace TDJ
             }
             if (Hp <= 0)
             {
+                isDead = true;
+                Body.Enabled = false;
                 _currentTexture = 0;
             }
             if (_status != Status.Flying && _collisions.Count == 0)

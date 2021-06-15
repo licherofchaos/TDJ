@@ -67,6 +67,8 @@ namespace TDJ
             {
                 if (b.GameObject().Name != "bullet")
                     _isGrounded = true;
+                if (b.GameObject().Name == "coin")
+                    game.coins++;
             };
             sensor.OnSeparation = (a, b, contact) => _isGrounded = false;
 

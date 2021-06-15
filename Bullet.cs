@@ -45,7 +45,7 @@ namespace TDJ
             _rotation = MathF.Atan2(-_directon.Y, _directon.X);
             _size = _texture.Bounds.Size.ToVector2() / 128f; // FIXME!!!!
             Body = BodyFactory.CreateCircle(
-                world, _size.Y / 2f, 1f,
+                world, _size.Y / 6f, 3f,
                 _position + (_size.X / 2f - _size.Y / 2f) * _directon,
                 BodyType.Dynamic, this);
             Body.LinearVelocity = _directon * _speed;
@@ -72,8 +72,8 @@ namespace TDJ
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             Vector2 scale = Camera.Length2Pixels(_size) / 128f; // TODO: HARDCODED!
-            scale.Y = scale.X;  // FIXME! TODO: HACK HACK HACK
-
+            scale.Y = scale.X/ 4f;  // FIXME! TODO: HACK HACK HACK
+            scale.X = scale.Y;
             spriteBatch.Draw(_texture,
                 Camera.Position2Pixels(_position), null,
                 Color.White, _rotation,

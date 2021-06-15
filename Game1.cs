@@ -17,6 +17,8 @@ namespace TDJ
         private Coin _coin;
         private Texture2D _background;
         public int coins = 0;
+        private SpriteFont Immortal;
+
         public Player Player => _player;
 
         public Game1()
@@ -42,8 +44,6 @@ namespace TDJ
             Camera.LookAt(Camera.WorldSize / 2f);
 
             _player = new Player(this);
-            _npc = new NPC(this);
-            _coin = new Coin(this);
 
             base.Initialize();
         }
@@ -66,7 +66,7 @@ namespace TDJ
 
             _world.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
             _player.Update(gameTime);
-            _npc.Update(gameTime);
+            _scene.Update(gameTime);
             _player.Die();
             Camera.LookAt(_player.Position);
 
@@ -80,12 +80,17 @@ namespace TDJ
 
             _spriteBatch.Begin();
 
+            //string coines = $"Coins: {coins}";
+            //_spriteBatch.DrawString(
+            //     Immortal,
+            //     coines,
+            //     new Vector2(0, 3),
+            //     Color.OrangeRed);
 
             _spriteBatch.Draw(_background, new Vector2(5, 5), Color.White);
             _scene.Draw(_spriteBatch, gameTime);
-            _npc.Draw(_spriteBatch, gameTime);
             _player.Draw(_spriteBatch, gameTime);
-            _coin.Draw(_spriteBatch, gameTime);
+           
 
             _spriteBatch.End();
 

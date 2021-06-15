@@ -18,13 +18,14 @@ namespace TDJ
         }
 
         private Game1 _game;
-
+        private bool isDead;
+        public bool IsDead => isDead;
         private List<Texture2D> _anim;
 
         private HashSet<Fixture> _collisions;
-        public Coin(Game1 game) :
+        public Coin(Game1 game, Vector2 position) :
             base("coin",
-                new Vector2(5.5f, 4f),
+               position,
                 Enumerable.Range(1, 1)
                     .Select(
                         n => game.Content.Load<Texture2D>(
@@ -48,10 +49,12 @@ namespace TDJ
 
             sensor.OnCollision = (a, b, contact) =>
             {
-                _collisions.Add(b);  // FIXME FOR BULLETS
+                _collisions.Add(b);  
                 if (b.GameObject().Name == "Player")
                 {
                     game.coins++;
+                    isDead = true;
+                    Body.Enabled = false;
                     _currentTexture = 0;
                 }
                 

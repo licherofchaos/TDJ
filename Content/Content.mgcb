@@ -313,6 +313,13 @@
 /processorParam:TextureFormat=Color
 /build:explosion3.png
 
+#begin File.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:File.spritefont;Immortal.spritefont
+
 #begin idle/idle_1.png
 /importer:TextureImporter
 /processor:TextureProcessor
