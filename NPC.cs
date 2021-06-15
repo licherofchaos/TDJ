@@ -39,6 +39,7 @@ namespace TDJ
                             $"NPC/snek{n}")
                         )
                     .ToArray())
+
         {
             _collisions = new HashSet<Fixture>();
             _idleFrames = _textures; // loaded by the base construtor
@@ -56,6 +57,8 @@ namespace TDJ
                 _game.Services.GetService<World>(),
                 width: _size.X / 2f
             ); // kinematic is false by default
+
+
 
             Fixture sensor = FixtureFactory.AttachRectangle(
                 _size.X / 3f, _size.Y * 0.05f,
@@ -83,6 +86,8 @@ namespace TDJ
                 _collisions.Remove(b);
             }; 
         }
+
+
 
         public override void Update(GameTime gameTime)
         {

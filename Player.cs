@@ -22,7 +22,6 @@ namespace TDJ
 
         private Game1 _game;
         private bool _isGrounded = false;
-        private int coins = 0;
         private Texture2D _bullet;
         public int hp = 10;
         private List<ITempObject> _objects;
@@ -104,7 +103,45 @@ namespace TDJ
                 }
                 );
 
+
         }
+
+
+        public override void Update(GameTime gameTime)
+        {
+            foreach (ITempObject obj in _objects)
+                obj.Update(gameTime);
+
+            if (_status == Status.Idle && Body.LinearVelocity.LengthSquared() > 0.001f)
+            {
+                _status = Status.Walk;
+                _textures = _walkFrames;
+                _currentTexture = 0;
+            }
+
+            if (_status == Status.Walk && Body.LinearVelocity.LengthSquared() <= 0.001f)
+            {
+                _status = Status.Idle;
+                _textures = _idleFrames;
+                _currentTexture = 0;
+            }
+
+            if (Body.LinearVelocity.X < 0f) _direction = Direction.Left;
+            else if (Body.LinearVelocity.X > 0f) _direction = Direction.Right;
+
+            base.Update(gameTime);
+            Camera.LookAt(_position);
+
+            _objects.AddRange(_objects
+                .Where(obj => obj is Bullet)
+                .Cast<Bullet>()
+                .Where(b => b.Collided)
+                .Select(b => new Explosion(_game, b.ImpactPos))
+                .ToArray()
+            );
+            _objects = _objects.Where(b => !b.IsDead()).ToList();
+        }
+
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             base.Draw(spriteBatch, gameTime);

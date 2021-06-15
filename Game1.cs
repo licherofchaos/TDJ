@@ -43,6 +43,7 @@ namespace TDJ
 
             _player = new Player(this);
             _npc = new NPC(this);
+            _coin = new Coin(this);
 
             base.Initialize();
         }
@@ -84,7 +85,7 @@ namespace TDJ
             _scene.Draw(_spriteBatch, gameTime);
             _npc.Draw(_spriteBatch, gameTime);
             _player.Draw(_spriteBatch, gameTime);
-            //_coin.Draw(_spriteBatch, gameTime);
+            _coin.Draw(_spriteBatch, gameTime);
 
             _spriteBatch.End();
 

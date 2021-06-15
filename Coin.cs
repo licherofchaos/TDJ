@@ -21,13 +21,11 @@ namespace TDJ
 
         private List<Texture2D> _anim;
 
-        private Vector2 _startingPoint;
-
         private HashSet<Fixture> _collisions;
         public Coin(Game1 game) :
             base("coin",
                 new Vector2(5.5f, 4f),
-                Enumerable.Range(1, 4)
+                Enumerable.Range(1, 1)
                     .Select(
                         n => game.Content.Load<Texture2D>(
                             $"coin_{n}")
@@ -41,7 +39,7 @@ namespace TDJ
 
             AddRectangleBody(
                 _game.Services.GetService<World>(),
-                width: _size.X / 2f);
+                width: _size.X / 4f);
             Fixture sensor = FixtureFactory.AttachRectangle(
                 _size.X / 3f, _size.Y * 0.05f,
                 4, new Vector2(0, -_size.Y / 2f),
