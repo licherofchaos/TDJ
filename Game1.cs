@@ -16,6 +16,7 @@ namespace TDJ
         private World _world;
         private Coin _coin;
         private Texture2D _background;
+        public int coins = 0;
         public Player Player => _player;
 
         public Game1()
@@ -83,6 +84,7 @@ namespace TDJ
             _scene.Draw(_spriteBatch, gameTime);
             _npc.Draw(_spriteBatch, gameTime);
             _player.Draw(_spriteBatch, gameTime);
+            //_coin.Draw(_spriteBatch, gameTime);
 
             _spriteBatch.End();
 

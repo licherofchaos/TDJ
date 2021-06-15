@@ -265,7 +265,7 @@
 /processorParam:TextureFormat=Color
 /build:bullet.png
 
-#begin explosion.png
+#begin explosion1.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -275,7 +275,31 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:explosion.png
+/build:explosion1.png
+
+#begin explosion2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:explosion2.png
+
+#begin explosion3.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:explosion3.png
 
 #begin idle/idle_1.png
 /importer:TextureImporter
@@ -613,7 +637,7 @@
 /processorParam:TextureFormat=Color
 /build:idle/idle_9.png
 
-#begin NPC/NPCIdle_001.png
+#begin NPC/snek1.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -623,9 +647,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:NPC/NPCIdle_001.png
+/build:NPC/snek1.png
 
-#begin NPC/NPCIdle_002.png
+#begin NPC/snek10.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -635,9 +659,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:NPC/NPCIdle_002.png
+/build:NPC/snek10.png
 
-#begin NPC/NPCIdle_003.png
+#begin NPC/snek11.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -647,9 +671,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:NPC/NPCIdle_003.png
+/build:NPC/snek11.png
 
-#begin NPC/NPCIdle_004.png
+#begin NPC/snek12.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -659,9 +683,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:NPC/NPCIdle_004.png
+/build:NPC/snek12.png
 
-#begin NPC/NPCIdle_005.png
+#begin NPC/snek2.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -671,9 +695,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:NPC/NPCIdle_005.png
+/build:NPC/snek2.png
 
-#begin NPC/NPCIdle_006.png
+#begin NPC/snek3.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -683,9 +707,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:NPC/NPCIdle_006.png
+/build:NPC/snek3.png
 
-#begin NPC/NPCIdle_007.png
+#begin NPC/snek4.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -695,9 +719,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:NPC/NPCIdle_007.png
+/build:NPC/snek4.png
 
-#begin NPC/NPCIdle_008.png
+#begin NPC/snek5.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -707,9 +731,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:NPC/NPCIdle_008.png
+/build:NPC/snek5.png
 
-#begin NPC/NPCIdle_009.png
+#begin NPC/snek6.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -719,9 +743,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:NPC/NPCIdle_009.png
+/build:NPC/snek6.png
 
-#begin NPC/NPCIdle_010.png
+#begin NPC/snek7.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -731,9 +755,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:NPC/NPCIdle_010.png
+/build:NPC/snek7.png
 
-#begin NPC/NPCIdle_011.png
+#begin NPC/snek8.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -743,9 +767,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:NPC/NPCIdle_011.png
+/build:NPC/snek8.png
 
-#begin NPC/NPCIdle_012.png
+#begin NPC/snek9.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -755,7 +779,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:NPC/NPCIdle_012.png
+/build:NPC/snek9.png
 
 #begin walk/walk_1.png
 /importer:TextureImporter

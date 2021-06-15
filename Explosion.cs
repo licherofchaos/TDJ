@@ -14,7 +14,7 @@ namespace TDJ
         public Explosion(Game game, Vector2 position) : base(
             "explosion", position,
             Enumerable
-                .Range(0, 1)
+                .Range(1, 3)
                 .Select(
                     n => game.Content.Load<Texture2D>($"explosion{n}")
                 )

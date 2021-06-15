@@ -24,7 +24,7 @@ namespace TDJ
         private bool _isGrounded = false;
         private int coins = 0;
         private Texture2D _bullet;
-        private int hp = 10;
+        public int hp = 10;
         private List<ITempObject> _objects;
 
 

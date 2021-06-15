@@ -23,9 +23,11 @@ namespace TDJ
         private List<Texture2D> _idleFrames;
         private List<Texture2D> _walkFrames;
         private Vector2 _startingPoint;
+        
         private int Hp = 5;
-        private int _ccount = 0;
 
+        private int _ccount = 0;
+        private int dmg = 1;
         private HashSet<Fixture> _collisions;
         
         public NPC(Game1 game) : 
@@ -34,7 +36,7 @@ namespace TDJ
                 Enumerable.Range(1,12)
                     .Select(
                         n => game.Content.Load<Texture2D>(
-                            $"NPC/NPCIdle_{n:D3}")
+                            $"NPC/snek{n}")
                         )
                     .ToArray())
         {
@@ -73,7 +75,7 @@ namespace TDJ
                 }
                 else if (_status == Status.Flying && b.GameObject().Name == "bullet")
                 {
-                    Hp--;
+                    Hp=-dmg;
                 }
             };
             sensor.OnSeparation = (a, b, contact) =>
@@ -84,6 +86,17 @@ namespace TDJ
 
         public override void Update(GameTime gameTime)
         {
+            switch (_game.coins)
+            {
+                case 5:dmg = 2;
+                    break;
+                case 10:dmg = 3;
+                    break;
+                case 15:dmg = 4;
+                    break;
+                case 20:dmg = 5;
+                    break;
+            }
             if (Hp <= 0)
             {
                 _currentTexture = 0;
@@ -103,6 +116,7 @@ namespace TDJ
                 else if ((_position - _game.Player.Position).Length() < 0.6f)
                 {
                     // FIXME: Do Damage!!! Lots of it.
+                    ;
                     Body.LinearVelocity = Vector2.Zero;
                 }
                 else
