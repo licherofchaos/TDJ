@@ -114,37 +114,60 @@ namespace TDJ
 
         public override void Update(GameTime gameTime)
         {
-            foreach (ITempObject obj in _objects)
-                obj.Update(gameTime);
+            
 
-            if (_status == Status.Idle && Body.LinearVelocity.LengthSquared() > 0.001f)
+            Body.OnCollision = (a, b, c) =>
             {
-                _status = Status.Walk;
-                _textures = _walkFrames;
-                _currentTexture = 0;
-            }
 
-            if (_status == Status.Walk && Body.LinearVelocity.LengthSquared() <= 0.001f)
-            {
-                _status = Status.Idle;
-                _textures = _idleFrames;
-                _currentTexture = 0;
-            }
+              
+                
+                {   //Morte do player e reset a posição inicial
+                    if (b.GameObject().Name == "npc" || b.GameObject().Name == "npc2")
+                    {
+                        if (hp > 0)
+                        {
 
-            if (Body.LinearVelocity.X < 0f) _direction = Direction.Left;
-            else if (Body.LinearVelocity.X > 0f) _direction = Direction.Right;
+                            hp--;
+                        }
+                        else
+                        {
+                            Die();
+                        }
+                    }
+                }
+            };
+                foreach (ITempObject obj in _objects)
+                    obj.Update(gameTime);
 
-            base.Update(gameTime);
-            Camera.LookAt(_position);
+                if (_status == Status.Idle && Body.LinearVelocity.LengthSquared() > 0.001f)
+                {
+                    _status = Status.Walk;
+                    _textures = _walkFrames;
+                    _currentTexture = 0;
+                }
 
-            _objects.AddRange(_objects
-                .Where(obj => obj is Bullet)
-                .Cast<Bullet>()
-                .Where(b => b.Collided)
-                .Select(b => new Explosion(_game, b.ImpactPos))
-                .ToArray()
-            );
-            _objects = _objects.Where(b => !b.IsDead()).ToList();
+                if (_status == Status.Walk && Body.LinearVelocity.LengthSquared() <= 0.001f)
+                {
+                    _status = Status.Idle;
+                    _textures = _idleFrames;
+                    _currentTexture = 0;
+                }
+
+                if (Body.LinearVelocity.X < 0f) _direction = Direction.Left;
+                else if (Body.LinearVelocity.X > 0f) _direction = Direction.Right;
+
+                base.Update(gameTime);
+                Camera.LookAt(_position);
+
+                _objects.AddRange(_objects
+                    .Where(obj => obj is Bullet)
+                    .Cast<Bullet>()
+                    .Where(b => b.Collided)
+                    .Select(b => new Explosion(_game, b.ImpactPos))
+                    .ToArray()
+                );
+                _objects = _objects.Where(b => !b.IsDead()).ToList();
+            
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)

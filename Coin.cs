@@ -26,10 +26,10 @@ namespace TDJ
         public Coin(Game1 game, Vector2 position) :
             base("coin",
                position,
-                Enumerable.Range(1, 1)
+                Enumerable.Range(1, 4)
                     .Select(
                         n => game.Content.Load<Texture2D>(
-                            $"coin_{n}")
+                            $"tileset{n}")
                         )
                     .ToArray())
         {
