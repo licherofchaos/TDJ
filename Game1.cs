@@ -2,7 +2,10 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Genbox.VelcroPhysics.Dynamics;
+using Microsoft.Xna.Framework.Media;
 using IPCA.MonoGame;
+using Microsoft.Xna.Framework.Audio;
+using System;
 
 namespace TDJ
 {
@@ -18,7 +21,9 @@ namespace TDJ
         private Texture2D _background;
         public int coins = 0;
         private SpriteFont Immortal;
-
+        private SoundEffect _gunfire2;
+        private SoundEffectInstance _gunfire;
+        private Song _backgroundMusic;
         public Player Player => _player;
 
         public Game1()
@@ -53,7 +58,14 @@ namespace TDJ
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             _scene = new Scene(this, "MainScene");
             _background = Content.Load<Texture2D>("background1");
-            Immortal = Content.Load<SpriteFont>("File");
+            _gunfire2 = Content.Load<SoundEffect>("Gunfire2");
+            _gunfire = _gunfire2.CreateInstance();
+            _backgroundMusic = Content.Load<Song>("BackgroundMusic");
+
+            MediaPlayer.Volume = 0.2f;
+            MediaPlayer.Play(_backgroundMusic);
+
+            //Immortal = Content.Load<SpriteFont>("File");
             // TODO: use this.Content to load your game content here
         }
 
@@ -61,6 +73,12 @@ namespace TDJ
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+            if (Keyboard.GetState().IsKeyDown(Keys.F))
+            {
+                _gunfire.Play();
+            }
+
 
             if (Keyboard.GetState().IsKeyDown(Keys.R)) Initialize();
 
@@ -84,12 +102,12 @@ namespace TDJ
 
             _spriteBatch.Draw(_background, new Vector2(5, 5), Color.White);
 
-            string coines = $"Coins: {coins}";
-            _spriteBatch.DrawString(
-                 Immortal,
-                 coines,
-                 new Vector2(-5f, 50f),
-                 Color.OrangeRed);
+            //string coines = $"Coins: {coins}";
+            //_spriteBatch.DrawString(
+            //     Immortal,
+            //     coines,
+            //     new Vector2(-5f, 50f),
+            //     Color.OrangeRed);
             _scene.Draw(_spriteBatch, gameTime);
             _player.Draw(_spriteBatch, gameTime);
            

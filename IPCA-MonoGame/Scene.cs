@@ -35,7 +35,7 @@ namespace IPCA.MonoGame
                     string imageFilename = $"assets/orig/images/{imageName}";
 
                     // Load texture here, and send it to the sprite object
-                    Texture2D texture = game.Content.Load<Texture2D>(imageFilename);
+                     Texture2D texture = game.Content.Load<Texture2D>(imageFilename);
                     Sprite sprite = new Sprite(imageFilename, texture, new Vector2(x, y), true);
                     
                     _sprites.Add(sprite);
@@ -49,13 +49,23 @@ namespace IPCA.MonoGame
             _npcs = new List<NPC>();
             _npcs.Add(new NPC(game, new Vector2(4.5f, 2f)));
             _npcs.Add(new NPC(game, new Vector2(7.5f, 4f)));
+            _npcs.Add(new NPC(game, new Vector2(14f, -10f)));
+            _npcs.Add(new NPC(game, new Vector2(14f, -16f)));
 
             _npcs2 = new List<NPC2>();
             _npcs2.Add(new NPC2(game, new Vector2(2.5f, 2f)));
+            _npcs2.Add(new NPC2(game, new Vector2(22f, -10f)));
+            _npcs2.Add(new NPC2(game, new Vector2(22f, -16f)));
+            _npcs2.Add(new NPC2(game, new Vector2(32f, -8.5f)));
 
             _coins = new List<Coin>();
             _coins.Add(new Coin(game, new Vector2(2.5f, 2f)));
             _coins.Add(new Coin(game, new Vector2(3.5f, 2f)));
+            _coins.Add(new Coin(game, new Vector2(14f, -12.5f)));
+            _coins.Add(new Coin(game, new Vector2(22f, -12.5f)));
+            _coins.Add(new Coin(game, new Vector2(14f, -20.5f)));
+            _coins.Add(new Coin(game, new Vector2(22f, -20.5f)));
+
 
         }
 
