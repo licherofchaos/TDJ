@@ -40,7 +40,7 @@ namespace TDJ
 
             AddRectangleBody(
                 _game.Services.GetService<World>(),
-                width: _size.X / 4f);
+                width: _size.X /2f);
           
            
             Body.IsSensor = true;

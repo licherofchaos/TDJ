@@ -80,7 +80,7 @@ namespace TDJ
                 KeysState.GoingDown,
                 () =>
                 {
-                    if (_isGrounded) Body.ApplyForce(new Vector2(0, 210f));
+                    if (_isGrounded) Body.ApplyForce(new Vector2(0, 150f));
                 });
             KeyboardManager.Register(
                 Keys.A,

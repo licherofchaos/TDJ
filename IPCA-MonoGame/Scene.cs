@@ -17,6 +17,7 @@ namespace IPCA.MonoGame
         private List<NPC> _npcs;
         private List<NPC2> _npcs2;
         private List<Coin> _coins;
+        private List<win> _win;
 
         public Scene(Game1 game, string name)
         {
@@ -57,6 +58,7 @@ namespace IPCA.MonoGame
             _coins.Add(new Coin(game, new Vector2(2.5f, 2f)));
             _coins.Add(new Coin(game, new Vector2(3.5f, 2f)));
 
+            _win = new List<win>();
         }
 
 
